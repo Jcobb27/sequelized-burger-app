@@ -1,4 +1,4 @@
-console.log(process.env.DATABASE_URL);
+console.log(process.env.JAWSDB_URL);
 
 var express = require("express");
 var bodyParser = require("body-parser");
