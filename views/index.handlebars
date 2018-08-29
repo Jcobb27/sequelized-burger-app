@@ -1,0 +1,84 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-2">Burger Logger!</h1>
+        <p class="lead">Click to add a burger or devour it.</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-4 offset-1" id="menuSection">
+            <h2>Burgers on the Menu!</h2>
+
+            <ol>
+
+                {{#each burgers}} {{#unless devoured}}
+                <li>
+                    {{burger_name}}
+                    <button class="devour-it" data-id="{{this.id}}">Devour it!</button>
+                </li>
+                {{/unless}} {{/each}}
+
+            </ol>
+        </div>
+
+
+        <div class="col-4 offset-2" id="devouredSection">
+            <h2>Devoured Burgers!</h2>
+
+            <ol>
+
+                {{#each burgers}} {{#if devoured}}
+                <li>
+                    {{burger_name}}
+                </li>
+                {{/if}} {{/each}}
+
+            </ol>
+        </div>
+    </div>
+
+    <div class="row" >
+        <div class="col-4 offset-4" id = "addBurger">
+            <h2>Add a Burger</h2>
+            <form class=" create-form" method="POST" action="/api/burgers">
+
+                <div class="form-group">
+                    <label for="ca">Burger Name:</label>
+                    <input type="text" id="ca" name="name">
+                </div>
+
+                <button type="submit">Add Burger</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script>
+    $(".devour-it").on("click ", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+
+        var id = $(this).data("id");
+        var burger = {
+            id: $(this).data("id"),
+            devoured: true
+        }
+
+        // Send the POST request.
+        $.ajax("/api/burgers/" + id, {
+            type: "PUT",
+            data: burger
+        }).then(
+            function () {
+                console.log("devoured");
+                // Reload the page to get the updated list
+                location.assign("/");
+            }
+        );
+    });
+</script>

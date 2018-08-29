@@ -1,0 +1,32 @@
+.jumbotron {
+    height: 400px;
+    background-image: url("../images/eat.jpg");
+    background-size: auto 100%;
+    color: #f5ef9c;
+    text-align: center;
+    font-family: 'Sawarabi Gothic', sans-serif;
+}
+
+#menuSection, #devouredSection {
+    background-image: url("../images/ChalkboardBackground.jpg");
+    color: white;
+    font-family: 'Love Ya Like A Sister', cursive;
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 25px;
+    margin-top: 20px;
+    border: 10px solid rgb(121, 60, 36);
+}
+
+.devour-it {
+    font-family: 'Sawarabi Gothic', sans-serif;
+    margin: 5px;
+}
+
+#addBurger {
+    border: 2px solid gray;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 10px;
+    font-family: 'Sawarabi Gothic', sans-serif;
+}
