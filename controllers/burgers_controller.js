@@ -7,8 +7,12 @@ var db = require("../models");
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
-  db.Burger.findAll({}).then(function(dbBurger) {
-    res.json(dbBurger);
+  db.Burger.findAll({}).then(function(data) {
+    var hbsObject = {
+      burgers: data
+    };
+    console.log(hbsObject);
+    res.render("index", hbsObject);
   })
 });
 
@@ -18,7 +22,7 @@ router.post("/api/burgers", function(req, res) {
     devoured: 0
   }).then(function(dbBurger) {
     // We have access to the new todo as an argument inside of the callback function
-    res.json(dbBurger);
+    res.redirect("/");
   })
     .catch(function(err) {
     // Whenever a validation or flag fails, an error is thrown
@@ -28,7 +32,7 @@ router.post("/api/burgers", function(req, res) {
 });
 
 router.put("/api/burgers/:id", function(req, res) {
-  db.Todo.update({
+  db.Burger.update({
     devoured: req.body.devoured
   }, {
     where: {
